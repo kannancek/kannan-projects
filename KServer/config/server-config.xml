@@ -1,0 +1,9 @@
+<SERVER_CONFIG name="ServerConfiguration">
+	
+	<PORT>1234</PORT>
+	<CONTEXT>/</CONTEXT>
+	<APP_NAME>Test Application</APP_NAME>
+	<WAR_URL>C:/Kannan/MyApp/extjsapp</WAR_URL>
+	<START_PAGE>ext/examples/forum/forum.html</START_PAGE>
+</SERVER_CONFIG>
+
