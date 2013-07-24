@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 
 
@@ -53,7 +52,7 @@ public class BOGenerator {
 		
 		//GetBatch method
 		classString.append("\t@Override\n");
-		classString.append("\tpublic ArrayList<TransferObject> getBatch(int start, int last,Connection conn) throws InternalException {\n");		
+		classString.append("\tpublic ArrayList<TransferObject> getBatch(int start, int limit,Connection conn) throws InternalException {\n");		
 		classString.append("\t\t"+daoName+" dao = new "+ daoName +"();\n");
 		classString.append("\t\treturn dao.getBatch(start, last, conn);\n");
 		classString.append("\t}\n\n");
@@ -64,6 +63,19 @@ public class BOGenerator {
 		classString.append("\t\t"+daoName+" dao = new "+ daoName +"();\n");
 		classString.append("\t\treturn dao.getCount(conn);\n");
 		classString.append("\t}\n");
+		
+		//IsExisting method
+		classString.append("\t@Override\n");
+		classString.append("\tpublic boolean isExisting(TransferObject to, Connection conn)throws UIException, InternalException {\n");		
+		classString.append("\t\t"+daoName+" dao = new "+ daoName +"();\n");
+		classString.append("\t\treturn dao.isExisting(to,conn);\n");
+		classString.append("\t}\n\n");
+		
+		//IsExisting method
+		classString.append("\t@Override\n");
+		classString.append("\tpublic void validate(TransferObject to, Connection conn)throws UIException, InternalException {\n");		
+		classString.append("\t\t// TODO Auto-generated method stub\n");
+		classString.append("\t}\n\n");
 		
 		classString.append("}\n\n");
 		
