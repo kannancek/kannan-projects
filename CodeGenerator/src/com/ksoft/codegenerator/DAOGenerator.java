@@ -32,7 +32,7 @@ public class DAOGenerator {
 		classString.append(getFindByKeyMethod(colList, Constants.TABLE_NAME, toName,Constants.KEY_FIELD));
 		classString.append(getBatchMethod(colList, Constants.TABLE_NAME, toName,Constants.KEY_FIELD));
 		classString.append(getCountMethod(Constants.TABLE_NAME));
-		
+		classString.append(getIsExistingMethod(colList, Constants.TABLE_NAME, toName,Constants.KEY_FIELD));
 		classString.append("\n}");
 			
 		
@@ -231,7 +231,7 @@ public class DAOGenerator {
 		StringBuffer methodString = new StringBuffer();
 		
 		methodString.append("\t@Override\n");
-		methodString.append("\tpublic ArrayList<TransferObject> getBatch(int start, int last,Connection conn) throws InternalException {\n\n");			
+		methodString.append("\tpublic ArrayList<TransferObject> getBatch(int start, int limit,Connection conn) throws InternalException {\n\n");			
 		methodString.append("\t\tPreparedStatement pStmt	=	null;\n");
 		methodString.append("\t\tResultSet rs = null;\n");		
 		methodString.append("\t\tCRUDHelper sqlBuilder = new CRUDHelper();\n");
@@ -307,6 +307,38 @@ public class DAOGenerator {
 		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");		
 		methodString.append("\t\t}\n");
 		methodString.append("\t\treturn count;\n");
+		methodString.append("\t}\n\n");
+		
+		return methodString.toString();
+		
+	}	
+	
+	public String getIsExistingMethod(ArrayList<String> colList, String tableName, String toName, String key){
+		
+		StringBuffer methodString = new StringBuffer();		
+		methodString.append("\t@Override\n");
+		methodString.append("\tpublic boolean isExisting(TransferObject transObj,Connection conn) throws InternalException {\n\n");		
+		methodString.append("\t\tboolean result = false;\n");
+		methodString.append("\t\t"+ toName +" to = ("+ toName +")transObj;\n");
+		methodString.append("\t\tPreparedStatement pStmt	=	null;\n");
+		methodString.append("\t\tResultSet rs = null;\n");		
+		methodString.append("\t\tString strQuery	=	\"SELECT 1 FROM ZIPCODES WHERE "+ key +" = ? \";\n");
+		methodString.append("\n\t\ttry {\n\n");
+		methodString.append("\t\t\tpStmt	=	 conn.prepareStatement(strQuery);\n");
+		methodString.append("\t\t\tpStmt.setString(1, to.get"+ TOGenerator.getPropertyName(key,true) +"());\n");
+		methodString.append("\t\t\trs		=	pStmt.executeQuery();\n");
+		methodString.append("\t\t\tif(rs.next()){\n\n");			
+		methodString.append("\t\t\t\tresult = true;\n");			
+		
+		methodString.append("\n\t\t\t}\n");
+		
+		methodString.append("\t\t}catch (SQLException e) {\n\n");
+		methodString.append("\t\t\tKsoftLogger.getLogger().error(e.getMessage());\n");
+		methodString.append("\t\t\tthrow new InternalException (100,\"Error occurred while fetching data.\");\n\n");
+		methodString.append("\t\t}finally{\n");
+		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");		
+		methodString.append("\t\t}\n");
+		methodString.append("\t\treturn result;\n");
 		methodString.append("\t}\n\n");
 		
 		return methodString.toString();
