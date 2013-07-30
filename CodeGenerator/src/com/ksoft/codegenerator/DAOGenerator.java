@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 
 
@@ -179,7 +178,7 @@ public class DAOGenerator {
 		StringBuffer methodString = new StringBuffer();
 		
 		methodString.append("\t@Override\n");
-		methodString.append("\tpublic TransferObject findByKey(TransferObject transObj,Connection conn) throws InternalException {\n\n");		
+		methodString.append("\tpublic TransferObject findByKey(TransferObject transObj) throws InternalException {\n\n");		
 		methodString.append("\t\t"+ toName +" to = ("+ toName +")transObj;\n");
 		methodString.append("\t\tPreparedStatement pStmt	=	null;\n");
 		methodString.append("\t\tResultSet rs = null;\n");		
@@ -198,7 +197,9 @@ public class DAOGenerator {
 		methodString.append("\t\tsqlBuilder.setWhereClause(\" AND "+ key +" = ? \");\n");
 		
 		methodString.append("\t\tString strQuery	=	sqlBuilder.getSelectQuery();\n");
+		methodString.append("\t\tConnection conn = null;\n");
 		methodString.append("\n\t\ttry {\n\n");
+		methodString.append("\t\t\tconn = DBUtils.getConnection();\n");
 		methodString.append("\t\t\tpStmt	=	 conn.prepareStatement(strQuery);\n");
 		methodString.append("\t\t\tpStmt.setString(1, to.get"+ TOGenerator.getPropertyName(key,true) +"());\n");
 		methodString.append("\t\t\trs		=	pStmt.executeQuery();\n");
@@ -216,7 +217,9 @@ public class DAOGenerator {
 		methodString.append("\t\t\tKsoftLogger.getLogger().error(e.getMessage());\n");
 		methodString.append("\t\t\tthrow new InternalException (100,\"Error occurred while fetching data.\");\n\n");
 		methodString.append("\t\t}finally{\n");
-		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");		
+		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");	
+		methodString.append("\t\t\tDBUtils.closeStatment(pStmt);\n");	
+		methodString.append("\t\t\tDBUtils.closeConnection(conn);\n");
 		methodString.append("\t\t}\n");
 		methodString.append("\t\treturn to;\n");
 		methodString.append("\t}\n\n");
@@ -231,7 +234,7 @@ public class DAOGenerator {
 		StringBuffer methodString = new StringBuffer();
 		
 		methodString.append("\t@Override\n");
-		methodString.append("\tpublic ArrayList<TransferObject> getBatch(int start, int limit,Connection conn) throws InternalException {\n\n");			
+		methodString.append("\tpublic ArrayList<? extends TransferObject> getBatch(int start, int limit) throws InternalException {\n\n");			
 		methodString.append("\t\tPreparedStatement pStmt	=	null;\n");
 		methodString.append("\t\tResultSet rs = null;\n");		
 		methodString.append("\t\tCRUDHelper sqlBuilder = new CRUDHelper();\n");
@@ -249,7 +252,9 @@ public class DAOGenerator {
 		methodString.append("\t\tString strQuery	=	sqlBuilder.getSelectQuery();\n");
 		methodString.append("\t\tArrayList<TransferObject> alist	=	new ArrayList<TransferObject>();\n");
 		methodString.append("\t\t"+ toName +" to;\n");
+		methodString.append("\t\tConnection conn = null;\n");
 		methodString.append("\n\t\ttry {\n\n");
+		methodString.append("\t\t\tconn = DBUtils.getConnection();\n");
 		methodString.append("\t\t\tpStmt	=	 conn.prepareStatement(strQuery);\n");
 		methodString.append("\t\t\trs		=	pStmt.executeQuery();\n");
 		methodString.append("\t\t\twhile(rs.next()){\n\n");
@@ -268,7 +273,9 @@ public class DAOGenerator {
 		methodString.append("\t\t\tKsoftLogger.getLogger().error(e.getMessage());\n");
 		methodString.append("\t\t\tthrow new InternalException (100,\"Error occurred while fetching data.\");\n\n");
 		methodString.append("\t\t}finally{\n");
-		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");		
+		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");	
+		methodString.append("\t\t\tDBUtils.closeStatment(pStmt);\n");	
+		methodString.append("\t\t\tDBUtils.closeConnection(conn);\n");	
 		methodString.append("\t\t}\n");
 		methodString.append("\t\treturn alist;\n");
 		methodString.append("\t}\n\n");
@@ -282,7 +289,7 @@ public class DAOGenerator {
 		StringBuffer methodString = new StringBuffer();
 		
 		methodString.append("\t@Override\n");
-		methodString.append("\tpublic int getCount(Connection conn) throws InternalException{ \n\n");			
+		methodString.append("\tpublic int getCount() throws InternalException{ \n\n");			
 		methodString.append("\t\tPreparedStatement pStmt	=	null;\n");
 		methodString.append("\t\tResultSet rs = null;\n");		
 		methodString.append("\t\tCRUDHelper sqlBuilder = new CRUDHelper();\n");
@@ -292,7 +299,9 @@ public class DAOGenerator {
 		methodString.append("\t\tsqlBuilder.setArrFields(arrFields);\n");
 		methodString.append("\t\tString strQuery	=	sqlBuilder.getSelectQuery();\n");
 		methodString.append("\t\tint count = 0;\n");
+		methodString.append("\t\tConnection conn = null;\n");
 		methodString.append("\n\t\ttry {\n\n");
+		methodString.append("\t\t\tconn = DBUtils.getConnection();\n");
 		methodString.append("\t\t\tpStmt	=	 conn.prepareStatement(strQuery);\n");
 		methodString.append("\t\t\trs		=	pStmt.executeQuery();\n");
 		methodString.append("\t\t\twhile(rs.next()){\n\n");
@@ -304,7 +313,9 @@ public class DAOGenerator {
 		methodString.append("\t\t\tKsoftLogger.getLogger().error(e.getMessage());\n");
 		methodString.append("\t\t\tthrow new InternalException (100,\"Error occurred while fetching data.\");\n\n");
 		methodString.append("\t\t}finally{\n");
-		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");		
+		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");	
+		methodString.append("\t\t\tDBUtils.closeStatment(pStmt);\n");	
+		methodString.append("\t\t\tDBUtils.closeConnection(conn);\n");	
 		methodString.append("\t\t}\n");
 		methodString.append("\t\treturn count;\n");
 		methodString.append("\t}\n\n");
@@ -317,7 +328,7 @@ public class DAOGenerator {
 		
 		StringBuffer methodString = new StringBuffer();		
 		methodString.append("\t@Override\n");
-		methodString.append("\tpublic boolean isExisting(TransferObject transObj,Connection conn) throws InternalException {\n\n");		
+		methodString.append("\tpublic boolean isExisting(TransferObject transObj) throws InternalException {\n\n");		
 		methodString.append("\t\tboolean result = false;\n");
 		methodString.append("\t\t"+ toName +" to = ("+ toName +")transObj;\n");
 		methodString.append("\t\tPreparedStatement pStmt	=	null;\n");
@@ -337,6 +348,7 @@ public class DAOGenerator {
 		methodString.append("\t\t\tthrow new InternalException (100,\"Error occurred while fetching data.\");\n\n");
 		methodString.append("\t\t}finally{\n");
 		methodString.append("\t\t\tDBUtils.closeResultSet(rs);\n");		
+		methodString.append("\t\t\tDBUtils.closeStatment(pStmt);\n");	
 		methodString.append("\t\t}\n");
 		methodString.append("\t\treturn result;\n");
 		methodString.append("\t}\n\n");

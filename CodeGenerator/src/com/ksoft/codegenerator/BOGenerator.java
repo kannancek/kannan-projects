@@ -45,35 +45,35 @@ public class BOGenerator {
 		
 		//FindByKey method
 		classString.append("\t@Override\n");
-		classString.append("\tpublic TransferObject findByKey(TransferObject to,Connection conn) throws UIException,InternalException {\n");		
+		classString.append("\tpublic TransferObject findByKey(TransferObject to) throws UIException,InternalException {\n");		
 		classString.append("\t\t"+daoName+" dao = new "+ daoName +"();\n");
-		classString.append("\t\treturn dao.findByKey(to,conn);\n");
+		classString.append("\t\treturn dao.findByKey(to);\n");
 		classString.append("\t}\n\n");
 		
 		//GetBatch method
 		classString.append("\t@Override\n");
-		classString.append("\tpublic ArrayList<TransferObject> getBatch(int start, int limit,Connection conn) throws InternalException {\n");		
+		classString.append("\tpublic ArrayList<? extends TransferObject> getBatch(int start, int limit) throws InternalException {\n");		
 		classString.append("\t\t"+daoName+" dao = new "+ daoName +"();\n");
-		classString.append("\t\treturn dao.getBatch(start, last, conn);\n");
+		classString.append("\t\treturn dao.getBatch(start, last);\n");
 		classString.append("\t}\n\n");
 		
 		//GetCount method
 		classString.append("\t@Override\n");
-		classString.append("\tpublic int getCount(Connection conn) throws UIException,InternalException {\n");		
+		classString.append("\tpublic int getCount() throws UIException,InternalException {\n");		
 		classString.append("\t\t"+daoName+" dao = new "+ daoName +"();\n");
-		classString.append("\t\treturn dao.getCount(conn);\n");
+		classString.append("\t\treturn dao.getCount();\n");
 		classString.append("\t}\n");
 		
 		//IsExisting method
 		classString.append("\t@Override\n");
-		classString.append("\tpublic boolean isExisting(TransferObject to, Connection conn)throws UIException, InternalException {\n");		
+		classString.append("\tpublic boolean isExisting(TransferObject to)throws UIException, InternalException {\n");		
 		classString.append("\t\t"+daoName+" dao = new "+ daoName +"();\n");
-		classString.append("\t\treturn dao.isExisting(to,conn);\n");
+		classString.append("\t\treturn dao.isExisting(to);\n");
 		classString.append("\t}\n\n");
 		
 		//IsExisting method
 		classString.append("\t@Override\n");
-		classString.append("\tpublic void validate(TransferObject to, Connection conn)throws UIException, InternalException {\n");		
+		classString.append("\tpublic void validate(TransferObject to)throws UIException, InternalException {\n");		
 		classString.append("\t\t// TODO Auto-generated method stub\n");
 		classString.append("\t}\n\n");
 		
