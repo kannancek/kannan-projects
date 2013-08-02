@@ -29,6 +29,5 @@
 	<classpathentry kind="lib" path="lib/hibernate/jta-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate/jtidy-r8-20060801.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="deploy/ksoft-core.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
