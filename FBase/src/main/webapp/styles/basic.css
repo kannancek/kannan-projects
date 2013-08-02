@@ -1,0 +1,78 @@
+/*
+    Document   : newCascadeStyleSheet
+    Created on : Mar 4, 2010, 12:01:51 AM
+    Author     : Kannan
+    Description:
+
+*/
+.clear{
+clear:both;	
+}
+h2 {
+	font-size: 10pt;
+	color: #0299f0;
+	font-family: calibri;
+}
+
+#header {
+	height: 84px;
+	width: 100%;
+}
+#success{
+	height:50px; 
+	background:#E7FFE3; 
+	border: 1px solid green;
+	padding: 5px 0px 0px 5px
+}
+#error{
+	height:50px; 
+	background: #fbe4e4; 
+	border: 1px solid red;
+	padding: 5px 0px 0px 5px
+}
+#loader{
+	height:50px; 
+	background:#FFFFFF; 
+	border: 1px solid #8AB0FF;
+	padding: 15px 0px 0px 5px
+}
+.readonlytext{
+	font-weight:bold;
+	color:red;
+	}
+#app-header {
+	/*background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0%, #242E33),color-stop(100%, #040501) );
+	background-image: -webkit-linear-gradient(top, #242E33, #040501);
+	background-image: -moz-linear-gradient(top, #242E33, #040501);
+	background-image: -o-linear-gradient(top, #242E33, #040501);
+	background-image: linear-gradient(top, #242E33, #040501);*/
+	background:url('images/header.png') repeat-x;
+	width: 100%;
+}
+
+#app-header-title {
+	padding: 20px 10px 10px 50px;
+	background: url(images/orglogo.png) no-repeat;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #4e691f
+}
+#app-header-fbase {
+	background: url(images/fbaselogo.png) no-repeat;
+	height:50px;
+	width:175px;
+	float:right;
+}
+
+#login-box{
+    width:500px;
+    margin : auto auto;
+    height:250px;
+    background-image:url('images/login.png');
+    
+}
+#login-errors ul li {
+	list-style:none;
+	color:red
+}
