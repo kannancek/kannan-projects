@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+		<appender name="APPLOGFILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="D:/Projects/WorkSpace/FBase/logs/fbase.log"/>
+		<param name="Append" value="true"/>
+		<param name="DatePattern" value="yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p][%C][%d]  - %m%n"/>
+		</layout>
+	</appender>
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="APPLOGFILE" />
+	</root>
+</log4j:configuration>
