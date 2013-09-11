@@ -1,0 +1,172 @@
+/* Design by http://www.dreamtemplate.com */
+@charset "utf-8";
+body {
+	margin:0;
+	padding:0;
+	width:100%;
+	color:#929292;
+	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
+	background:url('images/bg.png') repeat;
+}
+p{
+	padding:0px 5px 0px 5px;
+}
+h2{
+	padding-left:5px;	
+	color:#0b75bf;
+}
+h4{
+	padding-left:5px;	
+	color:#0b75bf;
+}
+.clr {
+	clear:both;
+	padding:0;
+	margin:0;
+	width:100%;
+	font-size:0;
+	line-height:0;
+}
+
+.header{
+	margin:auto auto;
+	padding:0;
+	width:960px;
+	height:150px;
+	background:#FFFFFF;
+	
+}
+#logo {
+	margin:0;
+	padding:0;	
+	width:200px;
+	height:90px;
+	
+}
+#unlogo {
+	margin:0;
+	padding:0;	
+	width:78px;
+	height:90px;
+	background:url('images/unlogo.jpg') no-repeat;
+}
+#blueprint-logo {
+	margin:0;
+	padding:0;	
+	width:160px;
+	height:118px;
+	background:url('images/madre.png') no-repeat;
+	
+}
+
+#topbar{
+	margin:auto auto;
+	height:30px;
+	width:100%;
+	
+}
+
+#topbar-menu{
+	float:right;
+	height:20px;
+	color:#555;
+	width:350px;
+	padding : 5px;
+	font-weight:bold;
+}
+
+#topbar-menu a {
+	color:#555;
+	text-decoration:none;
+	font-size:10px;
+	
+}
+#topbar-menu a:hover{
+	color:#0b75bf;	
+}
+
+#inside-menu{
+	float:left;
+	height:20px;
+	color:#17365d;
+	width:100%;
+	font-weight:bold;
+	background-color:#b0b3ba;
+	padding : 5px;
+}
+#inside-menu a {
+	color:#17365d;
+	text-decoration:none;
+	font-size:11pt;
+	padding : 5px 20px 5px 5px;
+}
+#inside-menu a:hover{
+	color:#0b75bf;
+}
+
+
+#title {
+	
+	font-size:14pt;
+	font-weight:normal;
+	color:#17365d;
+}
+
+.content{
+	margin:auto auto;
+	padding:0;
+	width:960px;
+	height:900px;
+	background:#FFFFFF;
+}
+
+.left-panel{
+	float:left;
+	padding:0;
+	width:760px;
+	height:900px;
+	
+}
+.right-panel{
+	float:right;	
+	padding:0;
+	width:200px;
+	height:900px;
+	background-color:#002060;
+}
+#flag{
+	float:left;	
+	width:5px;
+	height:100%;
+	background:url('images/flag.jpg') repeat-x;
+}
+
+
+.footer {
+	margin:auto auto;
+	background:#b0b3ba;
+	width:960px;
+	height:30px;
+}
+
+#footer-text {
+	padding:5px 0px 0px 5px ;
+	color:white;
+}
+
+.resp_list {list-style:none;}
+
+.resp_list a {
+	color:#00b1f1;
+	text-decoration:none;
+	font-size:10pt;
+	
+}
+.resp_list a:hover{
+	text-decoration:underline;	
+}
+
+div.tabs       { width: 100%;padding:10px; }
+div.tabs div   { width: 230px; height: 230px; float: left; }
+div.tabs .tabcontent   { padding:0px 5px 0px 5px; }
+div.tabs .tabheader{height: 30px; background-color:#0b75bf;padding-left:5px;padding-top:5px; color:#fff; font-size:11pt;font-weight:bold;font-family:Arial, Helvetica, Verdana, sans-serif}
